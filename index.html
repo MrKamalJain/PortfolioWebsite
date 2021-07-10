@@ -7,8 +7,12 @@
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <title>Kamal Jain</title>
         <link href="assets/logo.png" type="image/x-icon">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+        <script type="text/javascript">
+            emailjs.init('user_mF6hDysBkER9RzsmOaFER')
+        </script>
     </head>
-    <body>
+    <body oncontextmenu="return false" onselectstart="return false">
         <header class="l-header">
             <nav class="nav bd-grid">
                 <div class="nav_toggle" id="nav-toggle">
@@ -48,7 +52,7 @@
                             <!--<a href="#" class="home_social-link" target="blank"></a>
                             <a href="#" class="home_social-link" target="blank"></a>-->
                         </div>
-                        <button id="download-resume" class="download_btn">Download Resume</a>
+                        <div id="download-resume" class="download_btn">Download Resume</div>
                     </div>
                 </div>
             </section>
@@ -61,47 +65,6 @@
                     <div class="about_data">
                         <p class="about_description">Hi, I'm an experienced Software Developer adept in bringing forth expertise in design, coding, testing and maintenance of software systems. <br/>Equipped with a diverse and promising skill set. Proficient in various platforms, languages, and embedded systems. <br/>Experienced with the latest cutting edge development tools and procedured. <br/>Able to effectively self-manage during independent projects, as well as collaborate as part of a productive team. </p>
                     </div>
-                    <!--<div>
-                        <div class="about_information">
-                            <h3 class="about_information-title">Information</h3>
-                            <div class="about_information-data">
-                                <i class='bx bx-user about_information-icon' ></i>
-                                <span>Kamal Jain</span>
-                            </div>
-                            <div class="about_information-data">
-                                <i class='bx bx-phone about_information-icon' ></i>
-                                <span>9548132183</span>
-                            </div>
-                            <div class="about_information-data">
-                                <i class='bx bx-envelope about_information-icon' ></i>
-                                <span>kamaljain1423@gmail.com</span>
-                            </div>
-                        </div>
-                        <div class="about_information">
-                            <h3 class="about_information-title">Experience</h3>
-                            <div class="about_information-data">
-                                <i class='bx bx-medal about_information-icon' ></i>
-                                <div>
-                                    <span class="about_information-subtitle">2 Years</span>
-                                    <span class="about_information-subtitle-small">Experience</span>
-                                </div>
-                            </div>
-                            <div class="about_information-data">
-                                <i class='bx bx-briefcase about_information-icon' ></i>
-                                <div>
-                                    <span class="about_information-subtitle">50 Projects</span>
-                                    <span class="about_information-subtitle-small">Completed</span>
-                                </div>
-                            </div>
-                            <div class="about_information-data">
-                                <i class='bx bx-support about_information-icon' ></i>
-                                <div>
-                                    <span class="about_information-subtitle">Support</span>
-                                    <span class="about_information-subtitle-small">Online banking</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
             </section>
 
@@ -283,30 +246,16 @@
                 <span class="section-subtitle">Contact Me</span>
                 <h2 class="section-title">Get In Touch</h2>
                 <div class="contact_container bd-grid">
-                    <form action="" class="contact_form">
+                    <form class="contact_form" id="contactForm">
                         <div class="contact_inputs">
-                            <input type="text" placeholder="Name" class="contact_input">
-                            <input type="mail" placeholder="Email" class="contact_input">
+                            <input type="text" placeholder="Name" class="contact_input" name="fromName" id="fromName" required>
+                            <input type="mail" placeholder="Email" class="contact_input" name="fromEmail" id="fromEmail" required>
                         </div>
-                        <input type="text" placeholder="Subject" class="contact_input">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="Message" class="contact_input"></textarea>
-                        <input type="submit" value="Send Message" class="send_message_btn">
+                        <input type="text" placeholder="Subject" class="contact_input" name="subject" id="subject" required>
+                        <textarea cols="30" rows="10" placeholder="Message" class="contact_input" name="message" id="message"></textarea>
+                        <input type="submit" value="Send Message" class="send_message_btn" id="submitButton">
                     </form>
                     <div>
-                        <!--<div class="contact_info">
-                            <h3 class="contact_subtitle">Phone</h3>
-                            <span class="contact_text">9548132183</span>
-                            <span class="contact_text">9627241759</span>
-                        </div>
-                        <div class="contact_info">
-                            <h3 class="contact_subtitle">Email</h3>
-                            <span class="contact_text">kamaljain1423@gmail.com</span>
-                        </div>
-                        <div class="contact_info">
-                            <h3 class="contact_subtitle">Location</h3>
-                            <span class="contact_text">Hyderabad, Telangana</span>
-                            <span class="contact_text">India</span>
-                        </div>-->
                         <div class="about_information">
                             <h3 class="about_information-title">Phone</h3>
                             <div class="about_information-data">
@@ -342,7 +291,12 @@
                 </div>
             </footer>
 
+            <!-- Theme Toggler -->
+            <div class="darkMode_container" data-label="Switch to Dark Mode">
+                <button id="themeTogglerBtn">
+                    <i class='bx bxs-moon'></i>
+                </button>
+            </div>
         </main>
         <script src="js/main.js"></script>
-    </body>
 </html>

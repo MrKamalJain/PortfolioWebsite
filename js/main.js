@@ -1,4 +1,13 @@
-const navMenu = document.getElementById('nav-menu'), toggleMenu = document.getElementById('nav-toggle'), closeMenu = document.getElementById('nav-close');
+const root = document.querySelector(':root'),
+    navMenu = document.getElementById('nav-menu'),
+    toggleMenu = document.getElementById('nav-toggle'),
+    closeMenu = document.getElementById('nav-close'),
+    navLink = document.querySelectorAll('.nav_link'),
+    sections = document.querySelectorAll('section[id]'),
+    downloadResume = document.getElementById('download-resume'),
+    emailTextbox = document.getElementById('fromEmail'),
+    submitBtn = document.getElementById('submitButton')
+    themeToggler = document.getElementById('themeTogglerBtn');
 
 //Show menu
 toggleMenu.addEventListener('click', () => {
@@ -11,13 +20,11 @@ closeMenu.addEventListener('click', () => {
 });
 
 //Hide menu on click of any link
-const navLink = document.querySelectorAll('.nav_link');
 navLink.forEach(link => link.addEventListener('click', () => {
     navMenu.classList.remove('show');
 }));
 
 //Scroll sections for active link
-const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
     const scroll = window.pageYOffset;
     sections.forEach(section => {
@@ -25,19 +32,19 @@ window.addEventListener('scroll', () => {
         const sectionTop = section.offsetTop - 50;
         sectionId = section.getAttribute('id');
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelector('.nav_menu a[href*='+ sectionId +']').classList.add('active');
+            document.querySelector('.nav_menu a[href*=' + sectionId + ']').classList.add('active');
         } else {
-            document.querySelector('.nav_menu a[href*='+ sectionId +']').classList.remove('active');
+            document.querySelector('.nav_menu a[href*=' + sectionId + ']').classList.remove('active');
         }
     })
 });
 
-const downloadResume = document.getElementById('download-resume');
 downloadResume.addEventListener('click', () => {
     downloadResume.classList.remove('download_btn');
     downloadResume.classList.add('downloading_btn');
     var anim = setInterval(animate, 40);
     var percent = 0;
+
     function animate() {
         percent++;
         if (percent > 100) {
@@ -53,9 +60,58 @@ downloadResume.addEventListener('click', () => {
 });
 const download = (file) => {
     var element = document.createElement('a');
-    element.setAttribute('href',file);
-    element.setAttribute('download','');
+    element.setAttribute('href', file);
+    element.setAttribute('download', '');
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
 };
+
+emailTextbox.addEventListener('focusout', () => {
+    const regex = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i;
+    const value = emailTextbox.value;
+    if (value == "" || value.match(regex)) {
+        emailTextbox.classList.remove('contact_input_error');
+    } else {
+        emailTextbox.classList.add('contact_input_error');
+        alert('Please enter valid email.')
+    }
+});
+
+document.getElementById('contactForm')
+    .addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitBtn.value = 'Sending...';
+        const serviceID = 'default_service';
+        const templateID = 'template_4g8mdqh';
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                submitBtn.value = 'Send Message';
+                alert('Your message has been sent successfully!');
+                this.reset();
+            }, (err) => {
+                submitBtn.value = 'Send Message';
+                alert(JSON.stringify(err));
+            });
+    });
+
+themeToggler.addEventListener('click', () => {
+    const themeIcon = themeToggler.children[0];
+    if (themeIcon.classList.contains("bxs-moon")) {
+        themeIcon.classList.add('bxs-sun');
+        themeIcon.classList.remove('bxs-moon');
+        root.style.setProperty('--first-color-light','#000000');
+        root.style.setProperty('--first-color-lighten','#290F09');
+        root.style.setProperty('--first-color-dark','#EAE7E6');
+        root.style.setProperty('--first-color-darken','#FFFAFA');
+        themeToggler.parentNode.setAttribute('data-label', 'Switch to Light Mode');
+    } else {
+        themeIcon.classList.remove('bxs-sun');
+        themeIcon.classList.add('bxs-moon');
+        root.style.setProperty('--first-color-light','#EAE7E6');
+        root.style.setProperty('--first-color-lighten','#FFFAFA');
+        root.style.setProperty('--first-color-dark','#000000');
+        root.style.setProperty('--first-color-darken','#290F09');
+        themeToggler.parentNode.setAttribute('data-label', 'Switch to Dark Mode');
+    }
+});
