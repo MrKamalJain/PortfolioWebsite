@@ -100,18 +100,18 @@ themeToggler.addEventListener('click', () => {
     if (themeIcon.classList.contains("bxs-moon")) {
         themeIcon.classList.add('bxs-sun');
         themeIcon.classList.remove('bxs-moon');
-        root.style.setProperty('--first-color-light','#000000');
-        root.style.setProperty('--first-color-lighten','#290F09');
-        root.style.setProperty('--first-color-dark','#EAE7E6');
-        root.style.setProperty('--first-color-darken','#FFFAFA');
+        root.style.setProperty('--background-color-light','#000000');
+        root.style.setProperty('--background-color-lighten','#290F09');
+        root.style.setProperty('--background-color-dark','#EAE7E6');
+        root.style.setProperty('--background-color-darken','#FFFAFA');
         themeToggler.parentNode.setAttribute('data-label', 'Switch to Light Mode');
     } else {
         themeIcon.classList.remove('bxs-sun');
         themeIcon.classList.add('bxs-moon');
-        root.style.setProperty('--first-color-light','#EAE7E6');
-        root.style.setProperty('--first-color-lighten','#FFFAFA');
-        root.style.setProperty('--first-color-dark','#000000');
-        root.style.setProperty('--first-color-darken','#290F09');
+        root.style.setProperty('--background-color-light','#EAE7E6');
+        root.style.setProperty('--background-color-lighten','#FFFAFA');
+        root.style.setProperty('--background-color-dark','#000000');
+        root.style.setProperty('--background-color-darken','#290F09');
         themeToggler.parentNode.setAttribute('data-label', 'Switch to Dark Mode');
     }
 });
